@@ -41,15 +41,25 @@ export default function Input({ inputHandler, modalVisible, dismissModal }) {
           value={text}
           onChangeText={changeTextHandler}
         />
-        <Button title="Cancel" onPress={cancelHandler} />
-
-        <Button title="Confirm" onPress={confirmHandler} />
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonView}>
+            <Button title="Cancel" onPress={cancelHandler} />
+          </View>
+          <View style={styles.buttonView}>
+            <Button title="Confirm" onPress={confirmHandler} />
+          </View>
+        </View>
       </View>
     </Modal>
   );
 }
 
 const styles = StyleSheet.create({
+  buttonView: {
+    width: "30%",
+    margin: 5,
+  },
+  buttonsContainer: { flexDirection: "row" },
   input: {
     borderBottomWidth: 2,
     borderBottomColor: "purple",
