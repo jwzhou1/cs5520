@@ -1,12 +1,17 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 
-export default function Input() {
+export default function Input({ inputHandler }) {
   const [text, setText] = useState("");
   // callback handler
   function changeTextHandler(changedText) {
     console.log("user is typing ", changedText);
+
     setText(changedText);
+  }
+
+  function confirmHandler() {
+    inputHandler(text);
   }
   return (
     <View>
@@ -16,6 +21,7 @@ export default function Input() {
         value={text}
         onChangeText={changeTextHandler}
       />
+      <Button title="Confirm" onPress={confirmHandler} />
     </View>
   );
 }
