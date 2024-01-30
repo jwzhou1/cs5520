@@ -12,6 +12,7 @@ import {
 import Header from "./components/Header";
 import { useState } from "react";
 import Input from "./components/Input";
+import GoalItem from "./components/GoalItem";
 
 export default function App() {
   const appName = "My awesome app";
@@ -55,11 +56,7 @@ export default function App() {
           contentContainerStyle={styles.scrollViewContent}
           data={goals}
           renderItem={({ item }) => {
-            return (
-              <View style={styles.textContainer}>
-                <Text style={styles.text}>{item.text}</Text>
-              </View>
-            );
+            return <GoalItem goalObj={item} />;
           }}
         />
         {/* <ScrollView contentContainerStyle={styles.scrollViewContent}> */}
@@ -92,16 +89,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   bottomView: { flex: 4, backgroundColor: "lightpink" },
-  text: {
-    textAlign: "center",
-    fontSize: 30,
-    color: "white",
-    padding: 5,
-    borderRadius: 10,
-  },
-  textContainer: {
-    borderRadius: 10,
-    backgroundColor: "purple",
-    marginTop: 15,
-  },
 });
