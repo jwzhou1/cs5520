@@ -6,6 +6,7 @@ import {
   Text,
   Button,
   SafeAreaView,
+  ScrollView,
 } from "react-native";
 import Header from "./components/Header";
 import { useState } from "react";
@@ -13,11 +14,15 @@ import Input from "./components/Input";
 
 export default function App() {
   const appName = "My awesome app";
-  const [text, setText] = useState("");
+  // const [text, setText] = useState("");
+  const [goals, setGoals] = useState([]); 
   const [isModalVisible, setIsModalVisible] = useState(false);
   function receiveInput(data) {
     console.log("recieve input ", data);
-    setText(data);
+    const newGoal = ({text: data, id: Math.random()});
+  setGoals((currentGoals) => { return [...currentGoals, newGoal];});
+  
+    // setText(data);
     setIsModalVisible(false);
     //use this to update the text showing in the
     //Text component
@@ -38,8 +43,16 @@ export default function App() {
           dismissModal={dismissModal}
         />
       </View>
+      
       <View style={styles.bottomView}>
-        <Text style={styles.text}>{text}</Text>
+      <ScrollView contentContainerStyle = {styles.scrollViewContent}>
+        {goals.map((goalItem) => {return(
+          <View key={goalItem.id} style={styles.textContainer}>
+            <Text style={styles.text}>{goalItem.text}</Text>
+          </View>
+        );
+        })}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -57,6 +70,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
   },
-  bottomView: { flex: 4, backgroundColor: "lightpink", alignItems: "center"},
-  text: { textAlign: "center", fontSize: 20, backgroundColor: "purple", color: "white",marginTop: 5, padding:5},
+  textContainer: { borderRadius: 10, backgroundColor:"purple", marginTop: 5,  },
+  scrollViewContent: { alignItems: "center" },
+  bottomView: { flex: 4, backgroundColor: "lightpink", },
+  text: { textAlign: "center", fontSize: 80, backgroundColor: "purple", color: "white",marginTop: 5, padding:5},
 });
