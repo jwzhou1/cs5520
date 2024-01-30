@@ -20,6 +20,7 @@ export default function Input({ inputHandler, modalVisible, dismissModal }) {
 
   function confirmHandler() {
     inputHandler(text);
+    setText("");
   }
   function cancelHandler() {
     // hide the modal
@@ -39,14 +40,14 @@ export default function Input({ inputHandler, modalVisible, dismissModal }) {
           placeholder="Type something"
           style={styles.input}
           value={text}
-          onChangeText={changeTextHandler}
+          onChangeText={setText}
         />
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonView}>
             <Button title="Cancel" onPress={cancelHandler} />
           </View>
           <View style={styles.buttonView}>
-            <Button title="Confirm" onPress={confirmHandler} />
+            <Button title="Confirm" onPress={confirmHandler} disabled = {!text} />
           </View>
         </View>
       </View>
