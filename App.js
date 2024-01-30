@@ -38,6 +38,11 @@ export default function App() {
   function dismissModal() {
     setIsModalVisible(false);
   }
+  function goalDeleteHandler() {
+    console.log("delete pressed");
+    //we need to know which item was clicked? they have unique id
+    //use the id to filter the array
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topView}>
@@ -56,7 +61,9 @@ export default function App() {
           contentContainerStyle={styles.scrollViewContent}
           data={goals}
           renderItem={({ item }) => {
-            return <GoalItem goalObj={item} />;
+            return (
+              <GoalItem goalObj={item} deleteFunction={goalDeleteHandler} />
+            );
           }}
         />
         {/* <ScrollView contentContainerStyle={styles.scrollViewContent}> */}
