@@ -13,7 +13,7 @@ export default function Input({ inputHandler, modalVisible, dismissModal }) {
   const [text, setText] = useState("");
   // callback handler
   function changeTextHandler(changedText) {
-    console.log("user is typing ", changedText);
+    // console.log("user is typing ", changedText);
 
     setText(changedText);
   }
