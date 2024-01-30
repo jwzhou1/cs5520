@@ -23,6 +23,8 @@ export default function Input({ inputHandler, modalVisible, dismissModal }) {
     setText("");
   }
   function cancelHandler() {
+    setText("");
+
     // hide the modal
     dismissModal();
   }

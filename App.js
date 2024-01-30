@@ -6,6 +6,7 @@ import {
   Text,
   Button,
   SafeAreaView,
+  ScrollView,
 } from "react-native";
 import Header from "./components/Header";
 import { useState } from "react";
@@ -49,13 +50,15 @@ export default function App() {
         />
       </View>
       <View style={styles.bottomView}>
-        {goals.map((goalObj) => {
-          return (
-            <View style={styles.textContainer} key={goalObj.id}>
-              <Text style={styles.text}>{goalObj.text}</Text>
-            </View>
-          );
-        })}
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+          {goals.map((goalObj) => {
+            return (
+              <View style={styles.textContainer} key={goalObj.id}>
+                <Text style={styles.text}>{goalObj.text}</Text>
+              </View>
+            );
+          })}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -73,17 +76,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
   },
-  bottomView: { flex: 4, backgroundColor: "lightpink", alignItems: "center" },
+  scrollViewContent: {
+    alignItems: "center",
+  },
+  bottomView: { flex: 4, backgroundColor: "lightpink" },
   text: {
     textAlign: "center",
-    fontSize: 80,
+    fontSize: 30,
     color: "white",
-    padding: 15,
+    padding: 5,
     borderRadius: 10,
   },
   textContainer: {
     borderRadius: 10,
     backgroundColor: "purple",
-    marginTop: 35,
+    marginTop: 15,
   },
 });
