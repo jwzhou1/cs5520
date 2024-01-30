@@ -13,11 +13,21 @@ import Input from "./components/Input";
 
 export default function App() {
   const appName = "My awesome app";
-  const [text, setText] = useState("");
+  // const [text, setText] = useState("");
+  const [goals, setGoals] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   function receiveInput(data) {
-    console.log("recieve input ", data);
-    setText(data);
+    // console.log("recieve input ", data);
+    // setText(data);
+    //1. define a new object {text:.., id:..} and store data in object's text
+    // 2. use Math.random() to set the object's id
+    const newGoal = { text: data, id: Math.random() };
+    // const newArray = [...goals, newGoal];
+    //setGoals (newArray)
+    //use updater function whenever we are updating state variables based on the current value
+    setGoals((currentGoals) => [...currentGoals, newGoal]);
+
+    // 3. how do I add this object to goals array?
     setIsModalVisible(false);
     //use this to update the text showing in the
     //Text component
@@ -39,7 +49,13 @@ export default function App() {
         />
       </View>
       <View style={styles.bottomView}>
-        <Text style={styles.text}>{text}</Text>
+        {goals.map((goalObj) => {
+          return (
+            <View style={styles.textContainer} key={goalObj.id}>
+              <Text style={styles.text}>{goalObj.text}</Text>
+            </View>
+          );
+        })}
       </View>
     </SafeAreaView>
   );
@@ -60,10 +76,14 @@ const styles = StyleSheet.create({
   bottomView: { flex: 4, backgroundColor: "lightpink", alignItems: "center" },
   text: {
     textAlign: "center",
-    fontSize: 20,
-    backgroundColor: "purple",
+    fontSize: 80,
     color: "white",
-    padding: 5,
-    marginTop: 5,
+    padding: 15,
+    borderRadius: 10,
+  },
+  textContainer: {
+    borderRadius: 10,
+    backgroundColor: "purple",
+    marginTop: 35,
   },
 });
