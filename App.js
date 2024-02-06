@@ -39,9 +39,7 @@ export default function App() {
     setIsModalVisible(false);
   }
   function goalDeleteHandler() {
-    console.log("delete pressed");
-    //we need to know which item was clicked? they have unique id
-    //use the id to filter the array
+    console;
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -95,5 +93,5 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     alignItems: "center",
   },
-  bottomView: { flex: 4, backgroundColor: "lightpink" },
+  bottomView: { flex: 4, backgroundColor: "#dcd" },
 });
